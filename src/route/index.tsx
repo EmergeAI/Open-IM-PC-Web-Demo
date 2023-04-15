@@ -6,7 +6,7 @@ import Contacts from "../pages/home/Contact/contacts";
 import Profile from "../pages/home/Profile/Profile";
 import { ReactNode, useEffect, useState } from "react";
 import { useSelector, shallowEqual, useDispatch } from "react-redux";
-import { RootState } from "../store";
+import { RootState, ThunkAppDispatch } from "../store";
 import { events, im } from "../utils";
 import { getIMApiUrl, getIMWsUrl } from "../config";
 import { message, Modal, Spin } from "antd";
@@ -37,12 +37,13 @@ import { OPENSINGLEMODAL } from "../constants/events";
 import { cveSort } from "../utils";
 import { CbEvents } from "open-im-sdk-wasm/lib/constant";
 import { ConversationItem, FriendApplicationItem, GroupApplicationItem, WSEvent } from "../utils/open_im_sdk_wasm/types/entity";
+import { ContactActionTypes } from "../store/types/contacts";
 
 type GruopHandlerType = "added" | "deleted" | "info" | "memberAdded" | "memberDeleted";
 
 const Auth = () => {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkAppDispatch>();
   const curuid = localStorage.getItem("curimuid")!;
   const userID = localStorage.getItem("lastimuid")!;
   const token = localStorage.getItem(`improfile`)!;
@@ -282,7 +283,7 @@ const Auth = () => {
   }, []);
 
   const applicationHandlerTemplate = (data: any, failed: string, reqFlag: boolean = false) => {
-    let dispatchFn = (list: any) => {};
+    let dispatchFn = (list: any): any => {};
     let tmpArr: any[] = [];
     switch (failed) {
       case "toUserID":

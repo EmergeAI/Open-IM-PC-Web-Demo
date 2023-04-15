@@ -2,6 +2,7 @@ import { Dispatch } from "redux";
 import { getAppConfig, getAuthToken } from "../../api/admin";
 import { im } from "../../utils";
 import { PartialUserItem, FullUserItem } from "../../utils/open_im_sdk_wasm/types/entity";
+import { ThunkAppAction, ThunkAppDispatch } from '../../store';
 
 import {
   SET_SELF_INFO,
@@ -40,8 +41,8 @@ export const setAppGlobalConfig = (value: AppGlobalConfig): UserActionTypes => {
   };
 };
 
-export const getSelfInfo = () => {
-  return (dispatch: Dispatch) => {
+export const getSelfInfo = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     dispatch(setSelfInitLoading(true));
     im.getSelfUserInfo().then((res) => {
       dispatch(setSelfInfo(JSON.parse(res.data)));
@@ -50,18 +51,18 @@ export const getSelfInfo = () => {
   };
 };
 
-export const getAdminToken = (uid?:string,secret?:string) => {
-  return (dispatch: Dispatch) => {
-    getAuthToken(uid,secret).then(res=>{
+export const getAdminToken = (uid?: string, secret?: string): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
+    getAuthToken(uid, secret).then(res => {
       dispatch(setAdminToken(res.data.token))
     })
   }
 }
 
-export const getAppGlobalConfig = () => {
-  return (dispatch: Dispatch) => {
+export const getAppGlobalConfig = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     getAppConfig().then(({ data }) => {
-      if(!data.robots){
+      if (!data.robots) {
         data.robots = []
       }
       dispatch(setAppGlobalConfig(data));

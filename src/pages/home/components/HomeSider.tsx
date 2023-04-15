@@ -54,6 +54,7 @@ const AddConModal: FC<AddConModalProps> = ({ isAddConsVisible, loading, type, se
 };
 
 type HomeSiderProps = {
+  children: JSX.Element;
   searchCb: (value: string) => void;
 };
 

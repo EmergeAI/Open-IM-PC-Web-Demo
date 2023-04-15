@@ -85,7 +85,7 @@ const LoginForm: FC<IProps> = (props) => {
         if (!value || ctx.getFieldValue("password") === value) {
           return Promise.resolve();
         }
-        return Promise.reject(new Error(t("PassWordRepeat")));
+        return Promise.reject(new Error("PassWordRepeat"));
       },
     }),
   ];
@@ -99,7 +99,7 @@ const LoginForm: FC<IProps> = (props) => {
     if (checkSts) {
       finish(value);
     } else {
-      message.warn(t("CheckAgreement"));
+      message.warning(t("CheckAgreement"));
     }
   };
 
@@ -127,13 +127,13 @@ const LoginForm: FC<IProps> = (props) => {
               </Select>
             </Form.Item>
             <Form.Item name="phoneNo" rules={phoneRules}>
-              <Input bordered={false} placeholder={t("PhoneNumberTip")} />
+              <Input bordered={false} placeholder={"PhoneNumberTip"} />
             </Form.Item>
           </Input.Group>
         </Form.Item>
         {type === "login" ? (
           <Form.Item name="password" label={t("Password")} rules={pwdRules}>
-            <Input.Password style={{ width: "100%" }} bordered={false} placeholder={t("PasswordTip")} allowClear />
+            <Input.Password style={{ width: "100%" }} bordered={false} placeholder={"PasswordTip"} allowClear />
           </Form.Item>
         ) : null}
         <Form.Item>
@@ -162,11 +162,11 @@ const LoginForm: FC<IProps> = (props) => {
         layout="vertical"
       >
         <Form.Item name="password" label={t("Password")} rules={pwdRules} extra={help}>
-          <Input.Password style={{ width: "100%" }} bordered={false} placeholder={t("PasswordTip")} />
+          <Input.Password style={{ width: "100%" }} bordered={false} placeholder={"PasswordTip"} />
         </Form.Item>
 
         <Form.Item name="rePassword" label={t("ComfirmPassword")} rules={rePwdRules} dependencies={["password"]}>
-          <Input.Password style={{ width: "100%" }} bordered={false} placeholder={t("PasswordTip")} />
+          <Input.Password style={{ width: "100%" }} bordered={false} placeholder={"PasswordTip"} />
         </Form.Item>
 
         <Form.Item style={{ margin: "48px 0 0 0" }}>
@@ -209,7 +209,7 @@ const LoginForm: FC<IProps> = (props) => {
         <Input
           allowClear={true}
           bordered={false}
-          placeholder={t("SetNameNotice")}
+          placeholder={"SetNameNotice"}
           onChange={(v) =>
             setSInfo({
               ...sInfo,

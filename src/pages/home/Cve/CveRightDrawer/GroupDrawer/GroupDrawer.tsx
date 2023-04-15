@@ -75,7 +75,7 @@ const GroupDrawer: FC<GroupDrawerProps> = ({ curCve, role, groupMembers, changeT
           </div>
         </div>
         <div className="group_drawer_row_input">
-          <Input placeholder={t("Search")} prefix={<SearchOutlined />} />
+          <Input placeholder={"Search"} prefix={<SearchOutlined />} />
         </div>
         <div className="group_drawer_row_icon">
           {groupMembers!.length > 0

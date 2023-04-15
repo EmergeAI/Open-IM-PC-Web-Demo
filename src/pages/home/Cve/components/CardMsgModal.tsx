@@ -25,7 +25,7 @@ const CardMsgModal: FC<CardMsgModalProps> = ({ visible, close, cb }) => {
   return (
     <Modal wrapClassName="card_cons_se" title={t("SelectCard")} visible={visible} footer={null} onCancel={close} width="320px" className="card_se_modal">
       <div className="top_ctx">
-        <Input placeholder={t("Search")} prefix={<SearchOutlined />} />
+        <Input placeholder={"Search"} prefix={<SearchOutlined />} />
       </div>
       <div className="btm_ctx">
         <div className="title">{t("MyFriends")}</div>

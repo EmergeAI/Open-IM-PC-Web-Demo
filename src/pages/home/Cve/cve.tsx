@@ -1,7 +1,7 @@
 import { Button, Image, Layout, message, Modal } from "antd";
 import { useEffect, useRef, useState } from "react";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { RootState, ThunkAppDispatch } from "../../../store";
 import CveList from "./CveList/CveList";
 import CveFooter from "./CveFooter/CveFooter";
 import CveRightBar from "./CveRightBar";
@@ -70,7 +70,7 @@ const Home = () => {
   const curCve = useSelector((state: RootState) => state.cve.curCve, shallowEqual);
   const groupInfo = useSelector((state: RootState) => state.contacts.groupInfo, shallowEqual);
   const appConfig = useSelector((state: RootState) => state.user.appConfig, shallowEqual);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkAppDispatch>();
   const rs = useReactive<ReactiveState>({
     historyMsgList: [],
     typing: false,
@@ -229,7 +229,7 @@ const Home = () => {
         message.success("下载成功！");
         break;
       case "cancelled":
-        message.warn("下载已取消！");
+        message.warning("下载已取消！");
         break;
       case "interrupted":
         message.error("下载失败！");

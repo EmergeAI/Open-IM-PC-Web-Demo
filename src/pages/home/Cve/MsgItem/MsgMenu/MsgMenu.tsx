@@ -25,6 +25,7 @@ type MsgMenuProps = {
   msg: MessageItem;
   isSelf: boolean;
   visibleChange: (v: boolean) => void;
+  children: JSX.Element;
 };
 
 const MsgMenu: FC<MsgMenuProps> = ({ visible, msg, isSelf, visibleChange, children }) => {

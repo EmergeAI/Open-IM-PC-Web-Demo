@@ -52,7 +52,7 @@ const ChatContent: FC<ChatContentProps> = ({ merID, msgList, imgClick, loadMore,
     }
     switch (msg.contentType) {
       case MessageType.FRIENDADDED:
-        return t("AlreadyFriend");
+        return "AlreadyFriend";
       case MessageType.GROUPCREATED:
         const groupCreatedDetail = JSON.parse(msg.notificationElem.detail);
         const groupCreatedUser = groupCreatedDetail.opUser;
@@ -152,32 +152,35 @@ const ChatContent: FC<ChatContentProps> = ({ merID, msgList, imgClick, loadMore,
   return (
     <div className="chat_bg">
       <ScrollView holdHeight={30} loading={loading} data={msgList} fetchMoreData={nextFuc} hasMore={hasMore}>
-        {msgList?.map((msg) => {
-          if (TipsType.includes(msg.contentType)) {
-            return (
-              <div key={msg.clientMsgID} className="chat_bg_tips">
-                {parseTip(msg)}
-              </div>
-            );
-          } else {
-            return (
-              <MsgItem
-                audio={audioRef}
-                key={msg.clientMsgID}
-                mutilSelect={mutilSelect}
-                msg={msg}
-                imgClick={imgClick}
-                selfID={merID ?? selfID}
-                curCve={curCve!}
-              />
-            );
-          }
-        })}
+        <>
+          {msgList?.map((msg) => {
+            if (TipsType.includes(msg.contentType)) {
+              return (
+                <div key={msg.clientMsgID} className="chat_bg_tips">
+                  {parseTip(msg)}
+                </div>
+              );
+            } else {
+              return (
+                <MsgItem
+                  audio={audioRef}
+                  key={msg.clientMsgID}
+                  mutilSelect={mutilSelect}
+                  msg={msg}
+                  imgClick={imgClick}
+                  selfID={merID ?? selfID}
+                  curCve={curCve!}
+                />
+              );
+            }
+          })}
+        </>
       </ScrollView>
 
       <audio ref={audioRef} />
     </div>
   );
+
 };
 
 export default ChatContent;

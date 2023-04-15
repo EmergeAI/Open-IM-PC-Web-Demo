@@ -227,7 +227,7 @@ const GroupOpModal: FC<GroupOpModalProps> = ({ visible, options, modalType, grou
             <div className="group_info_item">
               <div className="group_info_label">{t("GroupName")}</div>
               <div style={{ width: "100%" }}>
-                <Input placeholder={t("GroupNameTip")} value={rs.groupName} onChange={(e) => (rs.groupName = e.target.value)} />
+                <Input placeholder={"GroupNameTip"} value={rs.groupName} onChange={(e) => (rs.groupName = e.target.value)} />
               </div>
             </div>
             <div className="group_info_item">

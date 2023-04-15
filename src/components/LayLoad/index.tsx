@@ -2,7 +2,8 @@ import { useInViewport } from "ahooks"
 import { FC } from "react"
 
 type LayLoadProps = {
-    targetRef: React.RefObject<HTMLElement>
+    targetRef: React.RefObject<HTMLElement>;
+    children: JSX.Element;
     skeletonCmp: JSX.Element;
     forceLoad?: boolean
 }

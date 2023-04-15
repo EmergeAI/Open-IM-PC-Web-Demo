@@ -3,6 +3,7 @@ import { MemberMapType } from "../../@types/open_im";
 import { im } from "../../utils";
 import { FriendItem, GroupItem, BlackItem, FriendApplicationItem, GroupApplicationItem, GroupMemberItem, TotalUserStruct } from "../../utils/open_im_sdk_wasm/types/entity";
 import { GetGroupMemberParams } from "../../utils/open_im_sdk_wasm/types/params";
+import { ThunkAppAction, ThunkAppDispatch } from '../../store';
 
 import {
   ContactActionTypes,
@@ -112,56 +113,56 @@ export const setUnReadCount = (value: number): ContactActionTypes => {
   };
 };
 
-export const getFriendList = () => {
-  return (dispatch: Dispatch) => {
+export const getFriendList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getFriendList().then((res) => {
-      let tmp:FriendItem[] = []
-      JSON.parse(res.data).forEach((item:TotalUserStruct)=>!item.blackInfo&&tmp.push(item.friendInfo!))
+      let tmp: FriendItem[] = []
+      JSON.parse(res.data).forEach((item: TotalUserStruct) => !item.blackInfo && tmp.push(item.friendInfo!))
       dispatch(setFriendList(tmp))
     });
   };
 };
 
-export const getGroupList = () => {
-  return (dispatch: Dispatch) => {
+export const getGroupList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getJoinedGroupList().then((res) => dispatch(setGroupList(JSON.parse(res.data))));
   };
 };
 
-export const getBlackList = () => {
-  return (dispatch: Dispatch) => {
-    im.getBlackList().then((res) =>{
+export const getBlackList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
+    im.getBlackList().then((res) => {
       dispatch(setBlackList(JSON.parse(res.data)))
     });
   };
 };
 
-export const getRecvFriendApplicationList = () => {
-  return (dispatch: Dispatch) => {
+export const getRecvFriendApplicationList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getRecvFriendApplicationList().then((res) => dispatch(setRecvFriendApplicationList(JSON.parse(res.data))));
   };
 };
 
-export const getSentFriendApplicationList = () => {
-  return (dispatch: Dispatch) => {
+export const getSentFriendApplicationList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getSendFriendApplicationList().then((res) => dispatch(setSentFriendApplicationList(JSON.parse(res.data))));
   };
 };
 
-export const getRecvGroupApplicationList = () => {
-  return (dispatch: Dispatch) => {
+export const getRecvGroupApplicationList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getRecvGroupApplicationList().then((res) => dispatch(setRecvGroupApplicationList(JSON.parse(res.data))));
   };
 };
 
-export const getSentGroupApplicationList = () => {
-  return (dispatch: Dispatch) => {
+export const getSentGroupApplicationList = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getSendGroupApplicationList().then((res) => dispatch(setSentGroupApplicationList(JSON.parse(res.data))));
   };
 };
 
-export const getGroupMemberList = (options: GetGroupMemberParams) => {
-  return (dispatch: Dispatch) => {
+export const getGroupMemberList = (options: GetGroupMemberParams): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     dispatch(setGroupMemberLoading(true));
     im.getGroupMemberList(options).then((res) => {
       dispatch(setGroupMemberList(JSON.parse(res.data)));
@@ -170,16 +171,16 @@ export const getGroupMemberList = (options: GetGroupMemberParams) => {
   };
 };
 
-export const getGroupInfo = (gid:string) => {
-  return (dispatch: Dispatch) => {
-    im.getGroupsInfo([gid]).then((res) =>{
+export const getGroupInfo = (gid: string): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
+    im.getGroupsInfo([gid]).then((res) => {
       dispatch(setGroupInfo(JSON.parse(res.data)[0]))
     }).catch(err => dispatch(setGroupInfo({} as GroupItem)));
   }
 }
 
-export const getUnReadCount = () => {
-  return (dispatch: Dispatch) => {
+export const getUnReadCount = (): ThunkAppAction => {
+  return (dispatch: ThunkAppDispatch) => {
     im.getTotalUnreadMsgCount().then((res) => {
       dispatch(setUnReadCount(Number(res.data)));
     });

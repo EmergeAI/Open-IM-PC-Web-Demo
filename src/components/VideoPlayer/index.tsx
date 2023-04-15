@@ -3,10 +3,10 @@ import videojs from "video.js";
 import 'video.js/dist/video-js.css';
 import './style.less'
 
-const VideoPlayer = (props: { options: videojs.PlayerOptions; onReady: (player: videojs.Player) => void }) => {
+const VideoPlayer = () => { // props: { options: videojs.PlayerOptions; onReady: (player: videojs.Player) => void }
   const videoRef = useRef<HTMLVideoElement>(null);
   const playerRef = useRef<any>(null);
-  const { options, onReady } = props;
+  // const { options, onReady } = props;
 
   useEffect(() => {
     // make sure Video.js player is only initialized once
@@ -14,9 +14,9 @@ const VideoPlayer = (props: { options: videojs.PlayerOptions; onReady: (player: 
       const videoElement = videoRef.current;
       if (!videoElement) return;
 
-      const player = (playerRef.current = videojs(videoElement, options, () => {
+      const player = (playerRef.current = videojs(videoElement, null, () => { // options
         console.log("player is ready");
-        onReady && onReady(player);
+        // onReady && onReady(player);
       }));
     } else {
       // you can update player here [update player through props]
@@ -24,7 +24,7 @@ const VideoPlayer = (props: { options: videojs.PlayerOptions; onReady: (player: 
       // player.autoplay(options.autoplay);
       // player.src(options.sources);
     }
-  }, [options, videoRef]);
+  }); // , [options, videoRef]
 
   // Dispose the Video.js player when the functional component unmounts
   useEffect(() => {

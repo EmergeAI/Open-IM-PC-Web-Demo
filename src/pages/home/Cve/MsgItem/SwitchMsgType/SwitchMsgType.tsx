@@ -223,7 +223,7 @@ const SwitchMsgType: FC<SwitchMsgTypeProps> = ({ msg, audio, curCve, selfID, img
         };
         return (
           <div className={`chat_bg_msg_content_video ${!isSingle ? "nick_magin" : ""}`}>
-            <VideoPlayer options={videoJsOptions} onReady={handlePlayerReady} />
+            <VideoPlayer /* options={videoJsOptions} onReady={handlePlayerReady} */ /> 
             {/* <video className="video-js" data-setup='{}' controls src={msg.videoElem.videoUrl} /> */}
             {timeTip("video_msg_time")}
           </div>

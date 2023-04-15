@@ -24,11 +24,12 @@ import {
   getSentGroupApplicationList,
 } from "../../store/actions/contacts";
 import TopBar from "../../components/TopBar";
+import { ThunkAppDispatch } from "../../store";
 
 const Login = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkAppDispatch>();
   const [loading, setLoading] = useState(false);
   const { value: type, setValue: setType, back } = useHistoryTravel<Itype>("login");
   const lastType = useLatest(type);

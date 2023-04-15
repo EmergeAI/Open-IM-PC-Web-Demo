@@ -29,7 +29,7 @@ type HeaderProps = {
 
 const HomeHeader: FC<HeaderProps> = ({ isShowBt, type, title, curCve, typing, ginfo }) => {
   const { t } = useTranslation();
-  const [onlineStatus, setOnlineStatus] = useState<string>(t("Offline"));
+  const [onlineStatus, setOnlineStatus] = useState<string>("Offline");
   const [onlineNo, setOnlineNo] = useState(0);
   const groupMemberList = useSelector((state: RootState) => state.contacts.groupMemberList, shallowEqual);
   const groupMemberLoading = useSelector((state: RootState) => state.contacts.groupMemberLoading, shallowEqual);
@@ -60,7 +60,7 @@ const HomeHeader: FC<HeaderProps> = ({ isShowBt, type, title, curCve, typing, gi
   const switchOnline = (oType: string, details?: DetailType[]) => {
     switch (oType) {
       case "offline":
-        setOnlineStatus(t("Offline"));
+        setOnlineStatus("Offline");
         break;
       case "online":
         let str = "";

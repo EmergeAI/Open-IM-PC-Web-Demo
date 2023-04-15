@@ -3,7 +3,7 @@ import { Descriptions, Button, Input, Modal, Typography, Form, message, Upload }
 import { FC, useState, useRef, useEffect } from "react";
 import Draggable, { DraggableEvent, DraggableData } from "react-draggable";
 import { shallowEqual, useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../../store";
+import { RootState, ThunkAppDispatch } from "../../../store";
 import { cosUpload, events, im } from "../../../utils";
 import self_card from "@/assets/images/self_card.png";
 import del_card from "@/assets/images/del_card.png";
@@ -41,7 +41,7 @@ const UserCard: FC<UserCardProps> = ({ draggableCardVisible, info, close, type }
   const selectValue = (state: RootState) => state.contacts.friendList;
   const friendList = useSelector(selectValue, shallowEqual);
   const selfID = useSelector((state: RootState) => state.user.selfInfo.userID, shallowEqual);
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<ThunkAppDispatch>();
   const [form] = Form.useForm();
   const { t } = useTranslation();
 
@@ -288,7 +288,7 @@ const UserCard: FC<UserCardProps> = ({ draggableCardVisible, info, close, type }
         </div>
         <Form form={form} name="basic" onFinish={sendApplication} autoComplete="off">
           <Form.Item name="reqMsg">
-            <Input placeholder={t("VerficationTip")} />
+            <Input placeholder={"VerficationTip"} />
           </Form.Item>
         </Form>
       </div>

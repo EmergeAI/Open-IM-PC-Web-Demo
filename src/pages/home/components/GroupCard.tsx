@@ -174,7 +174,7 @@ const GroupCard: FC<GroupCardProps> = ({
           autoComplete="off"
         >
           <Form.Item name="reqMessage">
-            <Input placeholder={t("VerficationTip")} />
+            <Input placeholder={"VerficationTip"} />
           </Form.Item>
         </Form>
       </div>

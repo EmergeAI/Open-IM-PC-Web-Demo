@@ -156,7 +156,7 @@ const MultipleSelectBox: FC<MultipleSelectBoxProps> = ({ modalType,memberList, f
       <div className="group_info_label">{t("Invite")}</div>
       <div className="select_box">
         <div className="select_box_left">
-          <Input onChange={(e) => searchUser(e.target.value)} placeholder={t("SearchFriendGroup")} prefix={<SearchOutlined />} />
+          <Input onChange={(e) => searchUser(e.target.value)} placeholder={"SearchFriendGroup"} prefix={<SearchOutlined />} />
           {rs.memberList && rs.memberList.length > 0 ? (
             rs.memberList.map((m) => <LeftSelectItem key={m.userID} item={m} />)
           ) : rs.searchList.length > 0 ? (

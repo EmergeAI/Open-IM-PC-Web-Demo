@@ -99,7 +99,7 @@ const EditDrawer: FC<EditDrawerProps> = ({  }) => {
             onChange={(e) => changeGroupInfo(e.target.value, "introduction")}
             showCount
             autoSize={{ minRows: 4, maxRows: 6 }}
-            placeholder={t("GroupDescTip")}
+            placeholder={"GroupDescTip"}
           />
         </div>
       </div>

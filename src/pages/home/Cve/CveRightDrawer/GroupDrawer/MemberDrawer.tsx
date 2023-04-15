@@ -55,7 +55,7 @@ const MemberDrawer: FC<MemberDrawerProps> = (props) => {
   return (
     <div className="group_members">
       <div className="group_members_search">
-        <Input onKeyDown={onSearch} onChange={inputOnChange} placeholder={t("Search")} prefix={<SearchOutlined />} />
+        <Input onKeyDown={onSearch} onChange={inputOnChange} placeholder={"Search"} prefix={<SearchOutlined />} />
       </div>
       <div className="group_members_list">
         {searchStatus && searchList.length === 0 ? (

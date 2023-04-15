@@ -87,7 +87,7 @@ const GroupManage: FC<GroupManageProps> = ({ adminList,groupMembers,gid }) => {
         onOk={() => {}}
         onCancel={() => setVisible(false)}
       >
-        <Input placeholder={t("Search")} prefix={<SearchOutlined />} />
+        <Input placeholder={"Search"} prefix={<SearchOutlined />} />
         <Row className="gutter_row" gutter={[16, 0]}>
             {
                 groupMembers.map(m=>(

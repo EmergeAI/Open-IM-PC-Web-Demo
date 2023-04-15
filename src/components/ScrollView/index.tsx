@@ -8,6 +8,7 @@ type ScrollViewProps = {
   data: any[];
   fetchMoreData: () => void;
   hasMore: boolean;
+  children: JSX.Element;
   loading: boolean;
   height?: number;
   holdHeight?: number;
